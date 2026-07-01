@@ -16,6 +16,8 @@ https://boothcheck.com/api/mcp
 
 **Claude Desktop / claude.ai** — add a custom connector with the URL above (no auth).
 
+**ChatGPT** — Settings → Apps & Connectors → Advanced → enable Developer mode, then add the URL above as a new connector. The server ships an Apps SDK widget, so results render as an inline priced-in card.
+
 **Claude Code**
 
 ```
@@ -62,6 +64,10 @@ plus structured fields (`impliedGrowthPct`, `impliedDurationYears`, `impliedMarg
 - No fair values, no price targets, no ratings, ever. Describe output as "what the price implies," not as a recommendation.
 - For informational and research purposes only. Not investment advice. boothcheck is not a registered investment adviser.
 - Data is precomputed from SEC EDGAR filings and refreshed on boothcheck's regen cadence; each response carries its as-of date.
+
+## Registry
+
+Published in the [Official MCP Registry](https://registry.modelcontextprotocol.io) as `com.boothcheck/boothcheck` (see `server.json`). Aggregators like PulseMCP ingest from there.
 
 ## Links
 
