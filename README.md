@@ -4,7 +4,7 @@ Ask any AI assistant what a stock's price is actually betting on.
 
 boothcheck inverts a US stock's market price into the bet it implies: the operating-income growth rate, the years it must be sustained, and the operating margin the price assumes, measured against what the company has actually delivered. Every number traces to SEC EDGAR filings through a reverse-DCF read (expectations investing). It never returns a fair value, a price target, or a buy/sell rating. It shows the bet, so you can judge it.
 
-This MCP server exposes that decomposition for ~1,950 US tickers. Free, keyless, read-only.
+This MCP server exposes that decomposition for about 2,000 US tickers. Free, keyless, read-only.
 
 ## Connect
 
@@ -39,11 +39,30 @@ claude mcp add --transport http boothcheck https://boothcheck.com/api/mcp
 
 ## Tools
 
+Free, no key:
+
 | Tool | What it does |
 | --- | --- |
 | `whats_priced_in` | Invert one ticker's price into implied growth, duration, and margin, vs what the company earns today. |
 | `most_stretched` | Rank stocks by how much growth is already baked into their price. |
 | `compare_priced_in` | Side-by-side of the assumptions embedded in two prices. |
+| `list_coverage` | The coverage inventory: every ticker with a live record and its resolution level. |
+| `get_report_summary` | Bullet takeaways of a boothcheck research report (public reports). |
+| `get_guidance_ledger` | Management guidance behavior counts since 2006. A member key adds the full history and the scored guides. |
+
+With a member API key (membership includes API access; create a key at https://boothcheck.com/settings):
+
+| Tool | What it does |
+| --- | --- |
+| `get_report` | Full narrative report sections: bull case, bear case, valuation, catalysts. |
+| `get_iee_record` | The full structured price inversion: solve outputs, held parameters, plausibility panel. |
+| `get_segments` | Clean business-segment snapshots from SEC filings. |
+| `get_peer_cohort` | Peer cohort membership and cohort median multiples. |
+| `get_risk_factor_deltas` | New risk factors a company added to its 10-K, by year. |
+| `get_insider_signals` | Open insider cluster-buy fact records. Current facts only; no performance claims. |
+| `get_holders` | 13F institutional holder register facts. |
+
+The same data is served as plain REST at `https://boothcheck.com/api/v1`. Docs: https://boothcheck.com/developers
 
 Example prompts once connected:
 
@@ -61,7 +80,7 @@ plus structured fields (`impliedGrowthPct`, `impliedDurationYears`, `impliedMarg
 
 ## Rules of the road
 
-- No fair values, no price targets, no ratings, ever. Describe output as "what the price implies," not as a recommendation.
+- No fair values, no price targets, no ratings. Describe output as "what the price implies," not as a recommendation.
 - For informational and research purposes only. Not investment advice. boothcheck is not a registered investment adviser.
 - Data is precomputed from SEC EDGAR filings and refreshed on boothcheck's regen cadence; each response carries its as-of date.
 
