@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.boothcheck/boothcheck",
-  "description": "What a stock's price is betting on: implied growth, duration, margin from SEC filings. Free tools.",
-  "version": "1.2.0",
-  "websiteUrl": "https://boothcheck.com",
+  "description": "What a stock price is betting on: implied growth, duration, and margin, read from SEC filings.",
+  "version": "1.3.0",
+  "websiteUrl": "https://boothcheck.com/connect",
   "repository": {
     "url": "https://github.com/Keenan-ux/boothcheck-mcp",
     "source": "github"
