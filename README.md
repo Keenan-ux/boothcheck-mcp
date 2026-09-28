@@ -4,19 +4,9 @@ Ask any AI assistant what a stock's price is actually betting on.
 
 boothcheck inverts a US stock's market price into the bet it implies: the operating-income growth rate, the years it must be sustained, and the operating margin the price assumes, measured against what the company has actually delivered. Every number traces to SEC EDGAR filings through a reverse-DCF read (expectations investing). It never returns a fair value, a price target, or a buy/sell rating. It shows the bet, so you can judge it.
 
-This MCP server exposes that decomposition for about 2,000 US tickers, plus Boothcheck's public strategy-and-signal research record. Read-only. Six tools work with no account at all; the rest come with a boothcheck plan.
+This MCP server exposes that decomposition for about 2,000 US tickers, plus the SEC filing search, financials, and ownership records behind it. Read-only. Five tools work with no account at all; the rest come with a boothcheck plan.
 
-## Strategy vocabulary
-
-Boothcheck uses these terms narrowly:
-
-- A **strategy** is a frozen, rule-based selection and execution system with published evidence and governance. `get_strategies` is the canonical source for the current validated strategy record.
-- A **signal** is a measured event family or research observation. It may be too rare, too small, too stale, too cost-sensitive, or otherwise unsuitable to run as a strategy.
-- A **theoretical detection** is a live event selected by a strategy or signal. It is not a recommendation.
-- **Expectations investing** is the analytical framework behind Boothcheck's price inversion; it is not itself a named Boothcheck strategy.
-- `most_stretched` is an implied-expectations screen. It is not a strategy, signal, or strategy-selection feed.
-
-The Strategies page and `get_strategies` response are the live source of truth because evidence, governance status, and detections can change.
+`most_stretched` is an implied-expectations screen, not a strategy, signal, or stock-selection feed. boothcheck's strategy and signal research is internal and is not served here (since v1.5.0).
 
 ## Connect
 
@@ -26,7 +16,7 @@ There are two endpoints, and they are not interchangeable.
 
 | Endpoint | Auth | What you get |
 | --- | --- | --- |
-| `https://boothcheck.com/api/mcp` | none, or `Authorization: Bearer bck_...` | Keyless: the six free tools. With an API key: everything on that plan. |
+| `https://boothcheck.com/api/mcp` | none, or `Authorization: Bearer bck_...` | Keyless: the five free tools. With an API key: everything on that plan. |
 | `https://boothcheck.com/api/mcp-auth` | OAuth 2.1 | Sign in through the browser once. Everything on your plan, tokens refresh themselves. |
 
 A keyless client pointed at `/api/mcp-auth` gets a 401, so pick the one that matches how you want to authenticate.
@@ -66,7 +56,6 @@ A config-file client cannot run the OAuth browser step, so use the keyless endpo
 | `whats_priced_in` | Invert one ticker's price into implied growth, duration, and margin, against what the company earns today. |
 | `most_stretched` | Rank stocks by how much growth is already baked into their price. |
 | `compare_priced_in` | Side by side of the assumptions embedded in two prices. |
-| `get_strategies` | The validated strategy and governance record, theoretical detections, measured signal families, filing notice boards, and failed-research graveyard. |
 | `list_coverage` | The coverage inventory: every ticker with a live record and its resolution level. |
 | `get_report_summary` | Bullet takeaways of a boothcheck research report. Public reports keyless; the full library needs a Research key. |
 
@@ -104,7 +93,7 @@ Example prompts once connected:
 - "What is NVDA's price betting on?"
 - "Which stocks are priced for the most right now?"
 - "Compare what AMD and NVDA prices each assume."
-- "What are Boothcheck's validated strategies, measured signals, and current theoretical detections?"
+- "Which companies disclose supply-chain exposure to Taiwan in their latest 10-K?"
 - "What does AAPL's latest annual filing say about China demand?"
 
 ## What you get back
